@@ -1,0 +1,106 @@
+.navbar {
+    width: calc(100% - 60px);
+    height: 60px;
+    border-bottom: 1px solid $alt-primary;
+    position: fixed;
+    padding: 0 30px;
+
+    display: grid;
+    grid-template-areas: "logo search cart user";
+    grid-template-columns: auto 1fr auto auto;
+    gap: 20px;
+    align-items: center;
+
+    &__logo {
+        grid-area: logo;
+        @include flex(flex-start, center, false, 10px);
+        cursor: pointer;
+        img {
+            width: 50px;
+            height: auto;
+        }
+        span {
+            font-size: 25px;
+            color: $theme-primary;
+        }
+        &:hover {
+            img {
+                opacity: 0.8;
+            }
+            span {
+                color: $light-primary;
+            }
+        }
+    }
+
+    &__search {
+        grid-area: search;
+        padding: 0 7%;
+    }
+
+    &__cart {
+        grid-area: cart;
+        svg {
+            @extend .navbar-icon;
+            width: 20px !important;
+        }
+        &:hover {
+            svg {
+                color: $light-primary !important;
+            }
+        }
+    }
+
+    &__user {
+        grid-area: user;
+        cursor: pointer;
+        position: relative;
+        svg {
+            @extend .navbar-icon;
+            width: 15px !important;
+        }
+        &:hover {
+            svg {
+                color: $light-primary !important;
+            }
+        }
+    }
+
+    &__dropdown {
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        top: 60px;
+        right: 0%;
+        width: 135px;
+        a {
+            color: $theme-primary !important;
+            padding: 5px 10px;
+            border: 1px solid $alt-primary;
+            border-top: none;
+            text-align: center;
+            &:hover {
+                color: $light-primary !important;
+                background-color: $alt-primary;
+            }
+        }
+    }
+
+    &__user, &__cart {
+        span {
+            color: $theme-primary !important;
+            &:hover {
+                color: $light-primary !important;
+            }
+        }
+    }
+}
+
+.navbar-icon {
+    padding-right: 8px;
+    color: $theme-primary !important;
+    height: auto;
+    &:hover {
+        color: $light-primary !important;
+    }
+}

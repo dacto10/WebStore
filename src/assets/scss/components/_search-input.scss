@@ -1,0 +1,26 @@
+.search {
+    @include flex(flex-end, center, false, 5px);
+    input {
+        width: 100%;
+        height: 20px;
+        border-radius: 0%;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: solid 1px $theme-primary;
+    }
+    button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        
+        svg {
+            width: 17px !important;
+            height: auto;
+            color: $theme-primary;
+            &:hover {
+                color: $light-primary;
+            }
+        }
+    }
+}
