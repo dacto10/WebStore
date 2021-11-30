@@ -1,0 +1,7 @@
+.home {
+    @include flex(center, center, true, 20px);
+    &__head {
+        width: 100%;
+        @include flex(space-between, center, false, 0);
+    }
+}

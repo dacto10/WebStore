@@ -1,0 +1,15 @@
+.product-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 200px;
+    width: 100%;
+    img {
+        object-fit: cover;
+        width: auto;
+        height: 200px;
+    }
+    &__description {
+        padding: 15px;
+        @include flex(flex-start, flex-start, true, 15px);
+    }
+}

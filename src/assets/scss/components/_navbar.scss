@@ -3,6 +3,7 @@
     height: 60px;
     border-bottom: 1px solid $alt-primary;
     position: fixed;
+    top: 0;
     padding: 0 30px;
 
     display: grid;
@@ -55,6 +56,8 @@
         grid-area: user;
         cursor: pointer;
         position: relative;
+        height: 100%;
+        @include flex(center, center, false, 0);
         svg {
             @extend .navbar-icon;
             width: 15px !important;
@@ -62,6 +65,9 @@
         &:hover {
             svg {
                 color: $light-primary !important;
+            }
+            + .navbar__dropdown {
+                display: flex;
             }
         }
     }
@@ -73,6 +79,9 @@
         top: 60px;
         right: 0%;
         width: 135px;
+        &:hover {
+            display: flex;
+        }
         a {
             color: $theme-primary !important;
             padding: 5px 10px;
