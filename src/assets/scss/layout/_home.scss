@@ -4,4 +4,10 @@
         width: 100%;
         @include flex(space-between, center, false, 0);
     }
+    &__body {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
 }

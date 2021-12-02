@@ -5,6 +5,7 @@
     position: fixed;
     top: 0;
     padding: 0 30px;
+    background-color: white;
 
     display: grid;
     grid-template-areas: "logo search cart user";
@@ -88,6 +89,7 @@
             border: 1px solid $alt-primary;
             border-top: none;
             text-align: center;
+            background-color: white;
             &:hover {
                 color: $light-primary !important;
                 background-color: $alt-primary;

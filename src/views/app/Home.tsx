@@ -17,6 +17,15 @@ export default () => {
         }
     ];
 
+    const products = [{
+        id: "13",
+        name: "Acer Laptop",
+        seller: "PC Gears",
+        stock: 152,
+        price: 799,
+        image: `https://static.acer.com/up/Resource/Acer/Laptops/Swift_1/Image/20200707/Acer-Swift-1_SF114-33_Gold_modelmain.png`
+    }];
+
     return (
         <div className="home">
             <div className="home__head">
@@ -24,7 +33,7 @@ export default () => {
                 <Select options={categories} selectedValue={categories[0].value} />
             </div>
             <div className="home__body">
-                <ProductCard />
+                {products.map(el => <ProductCard product={el}/>)}
             </div>
         </div>
     )

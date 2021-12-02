@@ -1,12 +1,27 @@
-export default () => {
+import { Link } from "react-router-dom";
+
+interface Props {
+    product: {
+        id: string;
+        name: string;
+        seller: string;
+        stock: number;
+        price: number;
+        image: string;
+    }
+}
+
+export default (props: Props) => {
+    const {id, name, seller, stock, price, image} = props.product;
     return (
-        <div className="product-card">
-            <img src="https://m.media-amazon.com/images/I/71YsF5seP6L._AC_SY450_.jpg" alt="" />
+        <Link className="product-card" to={`/product?p=${id}`}>
+            <img src={image} alt="" />
             <div className="product-card__description">
-                <h3>Laptop xd</h3>
-                <p>500 Eur</p>
-                <span>Elver Galarga</span>
+                <p>{name}</p>
+                <p>Sold by {seller}</p>
+                <p>{stock} in stock</p>
+                <p>{price} €</p>
             </div>
-        </div>
+        </Link>
     )
 }
