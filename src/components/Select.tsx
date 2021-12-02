@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 interface Props {
     options: {
         text: string;
@@ -6,11 +8,18 @@ interface Props {
     selectedValue: string;
 }
 
-export default (props: Props) => {
+const Select: React.FC<Props> = (props: Props) => {
+    const navigate = useNavigate();
+
+    const SelectHandler = (category: string) => {
+        category !== 'all' ? navigate(`?c=${category}`) : navigate(`/`);
+    }
 
     return (
-        <select className="select">
+        <select className="select" onChange={e => SelectHandler(e.target.value)}>
             {props.options.map((el => <option value={el.value} >{el.text}</option>))}
         </select>
     )
-}
+};
+
+export default Select;

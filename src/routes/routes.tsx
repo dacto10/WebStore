@@ -12,7 +12,7 @@ export default () => (
       <Route path="/login" element={<Login />}/>
       <Route path="/register" element={<Register />}/>
       <Route path="/cart" element={<Cart />}/>
-      <Route path="/product/:id" element={<Product />}/>
+      <Route path="/product" element={<Product />}/>
     </Routes>
   </div>
 )

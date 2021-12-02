@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/icons/logo.svg'
 
-export default () => (
+const Navbar: React.FC = () => (
     <div className="navbar">
         <Link to={'/'} className="navbar__logo">
                 <img src={ logo } alt="" />
@@ -32,4 +32,6 @@ export default () => (
             </Link>
         </div>
     </div>
-)
+);
+
+export default Navbar;

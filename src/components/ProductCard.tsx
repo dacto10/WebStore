@@ -11,7 +11,7 @@ interface Props {
     }
 }
 
-export default (props: Props) => {
+const ProductCard: React.FC<Props> = (props: Props) => {
     const {id, name, seller, stock, price, image} = props.product;
     return (
         <Link className="product-card" to={`/product?p=${id}`}>
@@ -24,4 +24,6 @@ export default (props: Props) => {
             </div>
         </Link>
     )
-}
+};
+
+export default ProductCard;
