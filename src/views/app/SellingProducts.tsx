@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 
-const Orders: React.FC = () => {
+const SellingProducts: React.FC = () => {
     const products = [{
         id: "13",
         name: "Acer Laptop",
@@ -24,9 +25,10 @@ const Orders: React.FC = () => {
     }];
 
     const [currentProducts, setCurrentProducts] = useState(products);
+    const navigate = useNavigate();
 
-    const handleProductRemove = (index: number) => {
-        setCurrentProducts((state: any[]) => state.filter((el, i) => i !== index));
+    const handleProductEdition = (index: number) => {
+        navigate('/handler');
     }
 
     return (
@@ -35,18 +37,21 @@ const Orders: React.FC = () => {
                 currentProducts.length > 0 ? (
                     <>
                         <div className="default__head">
-                            <h2 className="title">My Orders</h2>
+                            <h2 className="title">My Products</h2>
+                            <Link to="/handler">
+                                <button className="btn btn--primary btn--center">Add Product</button>
+                            </Link>
                         </div>
                         <div className="default__body">
-                            {currentProducts.map((el, i) => <ProductCard product={el} index={i} resolve={true} buttonHandler={handleProductRemove}/>)}
+                            {currentProducts.map((el, i) => <ProductCard product={el} index={i} edit={true} buttonHandler={handleProductEdition}/>)}
                         </div>
                     </>
                 ) : (
-                    <h2 className="title">You don't have any pending orders!</h2>
+                    <h2 className="title">You are not selling any products!</h2>
                 )
             }
         </div>
     )
 };
 
-export default Orders;
+export default SellingProducts;

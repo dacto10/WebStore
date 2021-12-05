@@ -24,9 +24,15 @@ const Cart: React.FC =  () => {
     }];
 
     const [currentProducts, setCurrentProducts] = useState(products);
+    const [label, setLabel] = useState<string>("You have no products in your Cart!");
 
     const handleProductRemove = (index: number) => {
         setCurrentProducts((state: any[]) => state.filter((el, i) => i !== index));
+    }
+
+    const handlePurchase = () => {
+        setLabel(state => "Items purchased sucessfully!");
+        setCurrentProducts((state: any[]) => []);
     }
 
     const date = new Date();
@@ -42,16 +48,16 @@ const Cart: React.FC =  () => {
                 )
             }
             <div className="default__body">
-                {currentProducts.map((el, i) => <ProductCard product={el} index={i} remove={true} removeHandler={handleProductRemove}/>)}
+                {currentProducts.map((el, i) => <ProductCard product={el} index={i} remove={true} buttonHandler={handleProductRemove}/>)}
             </div>
             {currentProducts.length > 0 ? (
                 <div className="default__checkout">
                     <p>Total: {currentProducts.map(el => el.price).reduce((el, acc) => el + acc)} €</p>
                     <p>Estimated arrival date: { date.toDateString() }</p>
-                    <button className="btn btn--primary">Buy Now</button>
+                    <button className="btn btn--primary" onClick={handlePurchase}>Buy Now</button>
                 </div>
             ) : (
-                <h2 className="title">You have no products in your Cart!</h2>
+                <h2 className="title">{label}</h2>
             )}
         </div>
     )

@@ -14,13 +14,14 @@ interface Props {
     index: number;
     remove?: boolean;
     resolve?: boolean;
-    removeHandler?: (index: number) => void;
+    edit?: boolean;
+    buttonHandler?: (index: number) => void;
 }
 
 const ProductCard: React.FC<Props> = (props: Props) => {
     const {id, name, seller, stock, price, image, likes} = props.product;
     const removeItself = () => {
-        if (props.removeHandler) props.removeHandler(props.index);
+        if (props.buttonHandler) props.buttonHandler(props.index);
     }
     return (
         <div className="product-card" >
@@ -36,6 +37,7 @@ const ProductCard: React.FC<Props> = (props: Props) => {
                 <p>{likes} likes</p>
                 {props.remove && <button className="btn btn--red btn__sm" onClick={removeItself}><FontAwesomeIcon icon={['fas', 'trash']}/></button>}
                 {props.resolve && <button className="btn btn--primary btn__sm" onClick={removeItself}><FontAwesomeIcon icon={['fas', 'check']}/></button>}
+                {props.edit && <button className="btn btn--primary btn__sm" onClick={removeItself}><FontAwesomeIcon icon={['fas', 'pen']}/></button>}
                 <p>{price} €</p>
             </div>
         </div>
