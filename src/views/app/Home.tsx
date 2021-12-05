@@ -1,22 +1,9 @@
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import Select from "../../components/Select";
 
 const Home: React.FC = () => {
-    const categories = [
-        {
-            text: "All Categories",
-            value: "all"
-        },
-        {
-            text: "Electronics",
-            value: "electronics"
-        },
-        {
-            text: "Clothing",
-            value: "clothing"
-        }
-    ];
-
     const products = [{
         id: "13",
         name: "Acer Laptop",
@@ -36,14 +23,44 @@ const Home: React.FC = () => {
         image: `https://static.wixstatic.com/media/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg/v1/fill/w_498,h_498,al_c,q_85,usm_0.66_1.00_0.01/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg`
     }];
 
+    const categories = [
+        {
+            text: "All Categories",
+            value: "all"
+        },
+        {
+            text: "Electronics",
+            value: "electronics"
+        },
+        {
+            text: "Clothing",
+            value: "clothing"
+        }
+    ];
+
+    const location = useLocation();
+    const [currentCategory, setCurrentCategory] = useState<string>(new URLSearchParams(location.search).get("c") ?? "all");
+    const [currentProducts, setCurrentProducts] = useState(products.filter(el => el.category === currentCategory || currentCategory === "all"));
+    
+
+    const handleSelectCategory = (category: string) => {
+        function handleChange(state: any[]) {
+            const toReturn = products.filter(el => el.category === category || category === "all");
+            console.log(category)
+            console.log(toReturn);
+            return toReturn;
+        }
+        setCurrentProducts(handleChange);
+    }
+
     return (
         <div className="home">
             <div className="home__head">
                 <h2 className="title">Explore all products</h2>
-                <Select options={categories} selectedValue={categories[0].value}/>
+                <Select options={categories} selectedValue={categories[0].value} selectCategory={handleSelectCategory}/>
             </div>
             <div className="home__body">
-                {products.map(el => <ProductCard product={el}/>)}
+                {currentProducts.map(el => <ProductCard product={el}/>)}
             </div>
         </div>
     )
