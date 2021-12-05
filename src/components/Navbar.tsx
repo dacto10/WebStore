@@ -37,8 +37,11 @@ const Navbar: React.FC = () => {
                 <Link to={'/cart'}>
                     <span>My Products</span>
                 </Link>
-                <Link to={'/cart'}>
+                <Link to={'/liked'}>
                     <span>Liked Products</span>
+                </Link>
+                <Link to={'/orders'}>
+                    <span>My Orders</span>
                 </Link>
                 <Link to={'/login'}>
                     <span>Logout</span>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ProductCard from "../../components/ProductCard";
 
-const Cart: React.FC =  () => {
+const Orders: React.FC = () => {
     const products = [{
         id: "13",
         name: "Acer Laptop",
@@ -35,26 +35,21 @@ const Cart: React.FC =  () => {
     return (
         <div className="default">
             {
-                currentProducts.length > 0 && (
-                    <div className="default__head">
-                        <h2 className="title">My Cart</h2>
-                    </div>
+                currentProducts.length > 0 ? (
+                    <>
+                        <div className="default__head">
+                            <h2 className="title">My Orders</h2>
+                        </div>
+                        <div className="default__body">
+                            {currentProducts.map((el, i) => <ProductCard product={el} index={i} resolve={true} removeHandler={handleProductRemove}/>)}
+                        </div>
+                    </>
+                ) : (
+                    <h2 className="title">You don't have any pending orders!</h2>
                 )
             }
-            <div className="default__body">
-                {currentProducts.map((el, i) => <ProductCard product={el} index={i} remove={true} removeHandler={handleProductRemove}/>)}
-            </div>
-            {currentProducts.length > 0 ? (
-                <div className="default__checkout">
-                    <p>Total: {currentProducts.map(el => el.price).reduce((el, acc) => el + acc)} €</p>
-                    <p>Estimated arrival date: { date.toDateString() }</p>
-                    <button className="btn btn--primary">Buy Now</button>
-                </div>
-            ) : (
-                <h2 className="title">You have no products in your Cart!</h2>
-            )}
         </div>
     )
-}
+};
 
-export default Cart;
+export default Orders;

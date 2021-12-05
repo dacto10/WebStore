@@ -46,22 +46,18 @@ const Home: React.FC = () => {
     
 
     const handleSelectCategory = (category: string) => {
-        //TODO Implementar tipo categoria
-        function handleChange(state: any[]) {
-            const toReturn = products.filter(el => el.category === category || category === "all");
-            return toReturn;
-        }
-        setCurrentProducts(handleChange);
+        //TODO Implementar tipo producto
+        setCurrentProducts((state: any[]) => products.filter(el => el.category === category || category === "all"));
     }
 
     return (
-        <div className="home">
-            <div className="home__head">
+        <div className="default">
+            <div className="default__head">
                 <h2 className="title">Explore all products</h2>
                 <Select options={categories} selectedValue={categories[0].value} selectCategory={handleSelectCategory}/>
             </div>
-            <div className="home__body">
-                {currentProducts.map(el => <ProductCard product={el}/>)}
+            <div className="default__body">
+                {currentProducts.map((el ,i) => <ProductCard product={el} index={i} key={i}/>)}
             </div>
         </div>
     )

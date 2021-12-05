@@ -6,7 +6,11 @@
     border: solid 1px;
     border-radius: 5px;
     cursor: pointer;
-    
+    font-weight: bold;
+    &__sm {
+        width: 40px;
+        @include flex(center, center, false, 0px)
+    }
     &--red {
         color: $red;
         border-color: $red;
@@ -16,5 +20,8 @@
         color: $theme-primary;
         border-color: $theme-primary;
         background-color: $alt-primary;
+    }
+    &:hover {
+        opacity: 0.7;
     }
 }

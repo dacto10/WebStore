@@ -1,0 +1,33 @@
+.default {
+    @include flex(center, center, true, 20px);
+    &__head {
+        width: 100%;
+        @include flex(space-between, center, false, 0);
+    }
+    &__body {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    &__checkout {
+        margin-top: 30px;
+        padding-top: 15px;
+        width: 100%;
+        border-top: 1px solid $alt-primary;
+        @include flex(flex-start, flex-start, true, 15px);
+        position: relative;
+        p {
+            font-size: $fz-lg;
+            font-weight: bold;
+            color: $light-primary;
+        }
+        button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            top: 15px;
+            justify-content: center;
+        }
+    }
+}

@@ -45,9 +45,9 @@ const Product: React.FC = () => {
                 </div>
             </div>
             <h2 className="title">Other products you may like: </h2>
-            <div className="home">
-                <div className="home__body">
-                    {products.map(el => <ProductCard product={el}/>)}
+            <div className="default">
+                <div className="default__body">
+                    {products.map((el ,i) => <ProductCard product={el} index={i} key={i}/>)}
                 </div>
             </div>
         </>

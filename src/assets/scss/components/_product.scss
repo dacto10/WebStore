@@ -1,4 +1,5 @@
 .product-card {
+    z-index: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 200px;
@@ -7,32 +8,28 @@
     border: solid 1px $alt-primary;
     border-radius: 5px;
     box-shadow: 5px 10px 8px $light-primary;
-    cursor: pointer;
-    &:hover {
-        p, span {
-            color: $light-primary !important;
-        }
-        img {
-            opacity: 0.8;
-        }
-    }
 
     img {
         object-fit: cover;
         width: 100%;
         height: 200px;
+        cursor: pointer;
+        &:hover {
+            opacity: 0.8;
+        }
     }
     &__description {
         padding: 15px;
         @include flex(flex-start, flex-start, true, 15px);
         position: relative;
         color: $dark-primary;
+        button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
         p {
-            &:first-child {
-                font-size: $fz-lg;
-                color: $theme-primary;
-                font-weight: bold;
-            }
             &:last-child {
                 position: absolute;
                 bottom: 0;
@@ -41,6 +38,18 @@
                 color: $theme-primary;
                 font-weight: bold;
             }
+        }
+        span {
+            &:hover {
+                color: $light-primary !important;
+            }
+            cursor: pointer;
+            font-size: $fz-lg;
+            color: $theme-primary;
+            font-weight: bold;
+        }
+        a {
+            width: 85%;
         }
     }
 }
