@@ -1,0 +1,20 @@
+.btn {
+    width: 130px;
+    height: 40px;
+    @include flex(space-between, center, false, 0px);
+    font-size: $fz-md;
+    border: solid 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+    &--red {
+        color: $red;
+        border-color: $red;
+        background-color: $light-red;
+    }
+    &--primary {
+        color: $theme-primary;
+        border-color: $theme-primary;
+        background-color: $alt-primary;
+    }
+}

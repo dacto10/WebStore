@@ -1,0 +1,39 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: 45% 1fr;
+    gap: 20px;
+    &__img {
+        padding: 50px;
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+    &__content {
+        padding: 50px 0;
+        @include flex(center, flex-start, true, 0px);
+        p {
+            font-size: $fz-md;
+            padding-bottom: 20px;
+            &:first-child {
+                font-size: $fz-xl;
+                font-weight: bold;
+            }
+            svg {
+                color: $red;
+            }
+        }
+        span {
+            color: $theme-primary;
+            font-size: $fz-lg;
+            + p {
+                font-size: $fz-xs;
+            }
+        }
+        
+    }
+    &__buttons {
+        width: 100%;
+        @include flex(flex-end, center, false, 15px);
+    }
+}

@@ -27,7 +27,7 @@ const Navbar: React.FC = () => {
             </div>
             <Link to={'/cart'} className="navbar__cart">
                 <FontAwesomeIcon icon={['fas', 'shopping-cart']}/>
-                <span>My Cart</span>
+                <span>Cart</span>
             </Link>
             <div className="navbar__user">
                 <FontAwesomeIcon icon={['fas', 'user']}/>
@@ -36,6 +36,9 @@ const Navbar: React.FC = () => {
             <div className="navbar__dropdown">
                 <Link to={'/cart'}>
                     <span>My Products</span>
+                </Link>
+                <Link to={'/cart'}>
+                    <span>Liked Products</span>
                 </Link>
                 <Link to={'/login'}>
                     <span>Logout</span>
