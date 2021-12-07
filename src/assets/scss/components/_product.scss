@@ -9,11 +9,16 @@
     border-radius: 5px;
     box-shadow: 5px 10px 8px $light-primary;
 
+    > a {
+        @include flex(center, center, false, 0px)
+    }
+
     img {
         object-fit: cover;
-        width: 100%;
+        width: 200px;
         height: 200px;
         cursor: pointer;
+        align-self: center;
         &:hover {
             opacity: 0.8;
         }
@@ -54,5 +59,9 @@
         a {
             width: 85%;
         }
+    }
+    @include breakpoint(1000px) {
+        grid-template-columns: 1fr;
+        height: auto;
     }
 }
