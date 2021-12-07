@@ -39,6 +39,9 @@
                 font-weight: bold;
             }
         }
+        svg {
+            color: $red;
+        }
         span {
             &:hover {
                 color: $light-primary !important;

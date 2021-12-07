@@ -1,0 +1,32 @@
+.login {
+    @include flex(center, center, false, 0px);
+    width: 100%;
+    height: 100%;
+    &__form {
+        width: 550px;
+        border: solid 1px $alt-primary;
+        box-shadow: 5px 10px 8px $light-primary;
+        padding: 40px 30px;
+        @include flex(center, flex-start, true, 30px);
+    }
+    &__options {
+        width: 100%;
+        @include flex(flex-end, center, false, 15px);
+        button {
+            justify-content: center;
+        }
+    }
+    &__logo {
+        @include flex(center, center, true, 15px);
+        width: 100%;
+        img {
+            width: 150px;
+            height: auto;
+        }
+        span {
+            font-size: $fz-xl;
+            color: $theme-primary;
+            font-weight: bold;
+        }
+    }
+}

@@ -27,7 +27,7 @@ const ProductCard: React.FC<Props> = (props: Props) => {
                 </Link>
                 <p>Sold by {seller}</p>
                 <p>{stock} in stock</p>
-                <p>{likes} likes</p>
+                <p><FontAwesomeIcon icon={['fas', 'heart']}/> {likes}</p>
                 {props.remove && <button className="btn btn--red btn__sm" onClick={handleClick}><FontAwesomeIcon icon={['fas', 'trash']}/></button>}
                 {(props.resolve || props.edit) && <button className="btn btn--primary btn__sm" onClick={handleClick}><FontAwesomeIcon icon={['fas', props.resolve ? 'check': 'pen']}/></button>}
                 <p>{price} €</p>

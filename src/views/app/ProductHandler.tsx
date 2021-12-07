@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IProduct } from "../../utils/types";
 
 const ProductHandler: React.FC = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const emptyProduct: IProduct = {
         id: "",
         category: "",
@@ -32,43 +33,47 @@ const ProductHandler: React.FC = () => {
             [event.target.id]: event.target.value
         }))
     }
+    
+    const handleSubmit = () => {
+        navigate('/');
+    }
 
     return (
-        <div className="default">
+        <form className="default" onSubmit={handleSubmit}>
             <div className="default__head">
                 <h2 className="title">{title}</h2>
             </div>
             <div className="default__body">
                 <div className="field">
                     <p>Name: </p>
-                    <input type="text" id="name" value={product.name} onChange={e => handleChange(e)}/>
+                    <input type="text" id="name" value={product.name} onChange={e => handleChange(e)} required/>
                 </div>
                 <div className="field">
                     <p>Available stock: </p>
-                    <input type="number" id="stock" value={product.stock} onChange={e => handleChange(e)}/>
+                    <input type="number" id="stock" value={product.stock} onChange={e => handleChange(e)} required/>
                 </div>
                 <div className="field">
                     <p>Price in euros: </p>
-                    <input type="number" id="price" value={product.price} onChange={e => handleChange(e)}/>
+                    <input type="number" id="price" value={product.price} onChange={e => handleChange(e)} required/>
                 </div>
                 <div className="field">
                     <p>Image: </p>
                     <div className="field__file">
                         <span></span>
-                        {/* TODO */}
-                        <input id="img-input" type="file"/>
-                        <button className="btn btn--primary" onClick={uploadImage}>Upload <FontAwesomeIcon icon={['fas', 'upload']}/></button>
+                        {/* TODO subida + ux validacion*/}
+                        <input id="img-input" type="file" required/>
+                        <button type ="button" className="btn btn--primary" onClick={uploadImage}>Upload <FontAwesomeIcon icon={['fas', 'upload']}/></button>
                     </div>
                 </div>
                 <div className="field description">
                     <p>Description: </p>
-                    <textarea id="description" value={product.description} onChange={e => handleChange(e)}/>
+                    <textarea id="description" value={product.description} onChange={e => handleChange(e)} required/>
                 </div>
             </div>
             <div className="default__buttons">
-                <button className="btn btn--primary">{buttonLabel}</button>
+                <button type="submit" className="btn btn--primary">{buttonLabel}</button>
             </div>
-        </div>
+        </form>
     )
 }
 

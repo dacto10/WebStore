@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Cart from '../views/app/Cart';
 import Home from '../views/app/Home';
@@ -9,7 +10,7 @@ import SellingProducts from '../views/app/SellingProducts';
 import Login from '../views/auth/Login';
 import Register from '../views/auth/Register';
 
-export default () => (
+const RouterLink: React.FC = () => (
   <div className="container">
     <Routes>
       <Route path="/" element={<Home />}/>
@@ -24,3 +25,5 @@ export default () => (
     </Routes>
   </div>
 )
+
+export default RouterLink;
