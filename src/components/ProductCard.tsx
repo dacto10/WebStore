@@ -12,14 +12,14 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = (props: Props) => {
-    const {id, name, seller, stock, price, image, likes} = props.product;
-    const removeItself = () => {
+    const {id, name, seller, stock, price, imageUrl, image, likes} = props.product;
+    const handleClick = () => {
         if (props.buttonHandler) props.buttonHandler(props.index);
     }
     return (
         <div className="product-card" >
             <Link to={`/product?p=${id}`}>
-                <img src={image as string} alt="" />
+                <img src={imageUrl} alt="" />
             </Link>
             <div className="product-card__description">
                 <Link to={`/product?p=${id}`}>
@@ -28,9 +28,8 @@ const ProductCard: React.FC<Props> = (props: Props) => {
                 <p>Sold by {seller}</p>
                 <p>{stock} in stock</p>
                 <p>{likes} likes</p>
-                {props.remove && <button className="btn btn--red btn__sm" onClick={removeItself}><FontAwesomeIcon icon={['fas', 'trash']}/></button>}
-                {props.resolve && <button className="btn btn--primary btn__sm" onClick={removeItself}><FontAwesomeIcon icon={['fas', 'check']}/></button>}
-                {props.edit && <button className="btn btn--primary btn__sm" onClick={removeItself}><FontAwesomeIcon icon={['fas', 'pen']}/></button>}
+                {props.remove && <button className="btn btn--red btn__sm" onClick={handleClick}><FontAwesomeIcon icon={['fas', 'trash']}/></button>}
+                {(props.resolve || props.edit) && <button className="btn btn--primary btn__sm" onClick={handleClick}><FontAwesomeIcon icon={['fas', props.resolve ? 'check': 'pen']}/></button>}
                 <p>{price} €</p>
             </div>
         </div>

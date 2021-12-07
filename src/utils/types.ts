@@ -6,6 +6,7 @@ export interface IProduct {
     price: number;
     stock: number;
     likes: number;
-    image: File | string;
+    imageUrl?: string;
     description?: string;
+    image?: File;
 }
