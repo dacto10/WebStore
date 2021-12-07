@@ -41,7 +41,7 @@ const Product: React.FC = () => {
                     <div className="product-grid__buttons">
                         {/* TODO color boton cuando tiene y no tiene like */}
                         <button className="btn btn--red">Like <FontAwesomeIcon icon={['fas', 'heart']}/></button>
-                        <button className="btn btn--primary btn__lg">Add to cart <FontAwesomeIcon icon={['fas', 'shopping-cart']}/></button>
+                        <button className="btn btn--primary">Add <FontAwesomeIcon icon={['fas', 'shopping-cart']}/></button>
                     </div>
                 </div>
             </div>

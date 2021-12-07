@@ -21,9 +21,12 @@
         background-color: $light-red;
     }
     &--primary {
-        color: $theme-primary;
+        color: $theme-primary !important;
         border-color: $theme-primary;
         background-color: $alt-primary;
+        svg {
+            color: $theme-primary !important;
+        }
     }
     &--center {
         justify-content: center;

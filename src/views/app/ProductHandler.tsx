@@ -19,7 +19,7 @@ const ProductHandler: React.FC = () => {
         image: undefined
     }
     const productId = new URLSearchParams(location.search).get("p");
-    const [title, setTitle] = useState<string>(productId ? "Edit your product fields" : "Add a new product");
+    const [title, setTitle] = useState<string>(productId ? "Edit your product fields" : "Add a product");
     const [buttonLabel, setButtonLabel] = useState<string>(productId ? "Save" : "Add")
     const [product, setProduct] = useState<IProduct>(emptyProduct);
 

@@ -3,6 +3,9 @@
     &__head {
         width: 100%;
         @include flex(space-between, center, false, 0);
+        @include breakpoint(470px) {
+            flex-direction: column;
+        }
     }
     &__body {
         width: 100%;
@@ -31,6 +34,13 @@
             top: 0;
             top: 15px;
             justify-content: center;
+        }
+        @include breakpoint(630px) {
+            justify-content: center;
+            align-items: center;
+            button {
+                position: unset;
+            }
         }
     }
     &__buttons {
