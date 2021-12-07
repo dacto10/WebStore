@@ -1,16 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { IProduct } from "../utils/types";
 
 interface Props {
-    product: {
-        id: string;
-        name: string;
-        seller: string;
-        stock: number;
-        likes: number;
-        price: number;
-        image: string;
-    },
+    product: IProduct,
     index: number;
     remove?: boolean;
     resolve?: boolean;
@@ -26,7 +19,7 @@ const ProductCard: React.FC<Props> = (props: Props) => {
     return (
         <div className="product-card" >
             <Link to={`/product?p=${id}`}>
-                <img src={image} alt="" />
+                <img src={image as string} alt="" />
             </Link>
             <div className="product-card__description">
                 <Link to={`/product?p=${id}`}>

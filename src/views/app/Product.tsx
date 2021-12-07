@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react"
 import ProductCard from "../../components/ProductCard";
+import { IProduct } from "../../utils/types";
 
 const Product: React.FC = () => {
-    const products = [{
+    const products: IProduct[] = [{
         id: "13",
         name: "Acer Laptop",
         category: "electronics",

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import ProductCard from "../../components/ProductCard";
+import { IProduct } from "../../utils/types";
 
 const Cart: React.FC =  () => {
-    const products = [{
+    const products: IProduct[] = [{
         id: "13",
         name: "Acer Laptop",
         category: "electronics",
@@ -23,16 +24,16 @@ const Cart: React.FC =  () => {
         image: `https://static.wixstatic.com/media/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg/v1/fill/w_498,h_498,al_c,q_85,usm_0.66_1.00_0.01/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg`
     }];
 
-    const [currentProducts, setCurrentProducts] = useState(products);
+    const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products);
     const [label, setLabel] = useState<string>("You have no products in your Cart!");
 
     const handleProductRemove = (index: number) => {
-        setCurrentProducts((state: any[]) => state.filter((el, i) => i !== index));
+        setCurrentProducts((state: IProduct[]) => state.filter((el, i) => i !== index));
     }
 
     const handlePurchase = () => {
         setLabel(state => "Items purchased sucessfully!");
-        setCurrentProducts((state: any[]) => []);
+        setCurrentProducts((state: IProduct[]) => []);
     }
 
     const date = new Date();

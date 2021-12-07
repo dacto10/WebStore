@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
 import Select from "../../components/Select";
+import { IProduct } from "../../utils/types";
 
 const Home: React.FC = () => {
-    const products = [{
+    const products: IProduct[] = [{
         id: "13",
         name: "Acer Laptop",
         category: "electronics",
@@ -42,12 +43,11 @@ const Home: React.FC = () => {
 
     const location = useLocation();
     const [currentCategory, setCurrentCategory] = useState<string>(new URLSearchParams(location.search).get("c") ?? "all");
-    const [currentProducts, setCurrentProducts] = useState(products.filter(el => el.category === currentCategory || currentCategory === "all"));
+    const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products.filter(el => el.category === currentCategory || currentCategory === "all"));
     
 
     const handleSelectCategory = (category: string) => {
-        //TODO Implementar tipo producto
-        setCurrentProducts((state: any[]) => products.filter(el => el.category === category || category === "all"));
+        setCurrentProducts((state: IProduct[]) => products.filter(el => el.category === category || category === "all"));
     }
 
     return (

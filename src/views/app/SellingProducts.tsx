@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProductCard from "../../components/ProductCard";
+import { IProduct } from "../../utils/types";
 
 const SellingProducts: React.FC = () => {
-    const products = [{
+    const products: IProduct[] = [{
         id: "13",
         name: "Acer Laptop",
         category: "electronics",
@@ -24,7 +25,7 @@ const SellingProducts: React.FC = () => {
         image: `https://static.wixstatic.com/media/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg/v1/fill/w_498,h_498,al_c,q_85,usm_0.66_1.00_0.01/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg`
     }];
 
-    const [currentProducts, setCurrentProducts] = useState(products);
+    const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products);
     const navigate = useNavigate();
 
     const handleProductEdition = (index: number) => {
