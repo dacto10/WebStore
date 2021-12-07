@@ -2,7 +2,7 @@
     width: 100%;
     @include flex(flex-start, flex-start, true, 5px);
     p {
-        font-size: $fz-lg;
+        font-size: $fz-md;
         color: $light-primary;
         font-weight: bold;
     }

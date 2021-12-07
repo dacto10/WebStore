@@ -40,7 +40,7 @@ const SellingProducts: React.FC = () => {
                         <div className="default__head">
                             <h2 className="title">My Products</h2>
                             <Link to="/handler">
-                                <button className="btn btn--primary btn--center">Add Product</button>
+                                <button className="btn btn--primary btn--center btn__lg">Add Product</button>
                             </Link>
                         </div>
                         <div className="default__body">

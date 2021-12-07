@@ -12,6 +12,9 @@
         width: 40px;
         @include flex(center, center, false, 0px)
     }
+    &__lg {
+        width: 160px;
+    }
     &--red {
         color: $red;
         border-color: $red;
