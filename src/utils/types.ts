@@ -10,3 +10,21 @@ export interface IProduct {
     description?: string;
     image?: File;
 }
+
+export interface IUser {
+    id: string;
+    name: string;
+    products: IProduct[];
+    cart: IProduct[];
+    liked: IProduct[];
+    orders: IProduct[];
+}
+
+export interface IUserState {
+    user: IUser;
+}
+
+export type Credentials = {
+    username: string;
+    password: string;
+}
