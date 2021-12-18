@@ -1,53 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { axiosInstance } from "../..";
 import ProductCard from "../../components/ProductCard";
 import Select from "../../components/Select";
 import { IProduct } from "../../utils/types";
 
 const Home: React.FC = () => {
-    const products: IProduct[] = [{
-        id: "13",
-        name: "Acer Laptop",
-        category: "electronics",
-        seller: "PC Gears",
-        stock: 152,
-        likes: 314,
-        price: 799,
-        imageUrl: `https://static.acer.com/up/Resource/Acer/Laptops/Swift_1/Image/20200707/Acer-Swift-1_SF114-33_Gold_modelmain.png`
-    },
-    {
-        id: "14",
-        name: "Camisa bien Gucci",
-        category: "clothing",
-        seller: "Gucci Gang",
-        stock: 2,
-        likes: 3,
-        price: 1999,
-        imageUrl: `https://static.wixstatic.com/media/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg/v1/fill/w_498,h_498,al_c,q_85,usm_0.66_1.00_0.01/e100fb_cc278b0d21ce46c1a0405c8d266f034b~mv2_d_1200_1500_s_2.jpg`
-    }];
-
     const categories = [
         {
-            text: "All Categories",
-            value: "all"
+            value: "All"
         },
         {
-            text: "Electronics",
-            value: "electronics"
+            value: "Electronics"
         },
         {
-            text: "Clothing",
-            value: "clothing"
+            value: "Clothing"
         }
     ];
 
     const location = useLocation();
-    const [currentCategory, setCurrentCategory] = useState<string>(new URLSearchParams(location.search).get("c") ?? "all");
-    const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products.filter(el => el.category === currentCategory || currentCategory === "all"));
-    
+    const [products, setProducts] = useState<IProduct[]>([]);
+    const [currentCategory, _] = useState<string>(new URLSearchParams(location.search).get("c") ?? "All");
+    const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products.filter(el => el.category === currentCategory || currentCategory === "All"));
+
+    useEffect(() => {
+        async function getProducts() {
+            const {data} = await axiosInstance.get("/product/");
+            setProducts(data);
+            setCurrentProducts(data.filter((el: IProduct) => el.category === currentCategory || currentCategory === "All"));
+        }
+        getProducts();
+    }, [])
 
     const handleSelectCategory = (category: string) => {
-        setCurrentProducts((state: IProduct[]) => products.filter(el => el.category === category || category === "all"));
+        setCurrentProducts((state: IProduct[]) => products.filter(el => el.category === category || category === "All"));
     }
 
     return (

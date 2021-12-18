@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 interface Props {
     options: {
-        text: string;
         value: string;
     }[];
     selectedValue: string;
@@ -21,7 +20,7 @@ const Select: React.FC<Props> = (props: Props) => {
 
     return (
         <select className="select" onChange={e => SelectHandler(e.target.value)} value={currentCategory}>
-            {props.options.map((el => <option value={el.value} >{el.text}</option>))}
+            {props.options.map((el => <option value={el.value} >{el.value}</option>))}
         </select>
     )
 };

@@ -16,10 +16,10 @@ const RouterLink: React.FC = () => (
       <Route path="/" element={<Home />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/register" element={<Register />}/>
-      <Route path="/liked" element={<Liked />}/>
+      {/* <Route path="/liked" element={<Liked />}/> */}
       <Route path="/selling" element={<SellingProducts />}/>
       <Route path="/cart" element={<Cart />}/>
-      <Route path="/orders" element={<Orders />}/>
+      {/* <Route path="/orders" element={<Orders />}/> */}
       <Route path="/product" element={<Product />}/>
       <Route path="/handler" element={<ProductHandler />}/>
     </Routes>

@@ -5,26 +5,32 @@ export interface IProduct {
     seller: string;
     price: number;
     stock: number;
-    likes: number;
+    // likes: number;
     imageUrl?: string;
     description?: string;
-    image?: File;
+    userId: string;
 }
 
 export interface IUser {
     id: string;
-    name: string;
+    username: string;
     products: IProduct[];
     cart: IProduct[];
-    liked: IProduct[];
-    orders: IProduct[];
+    // liked: IProduct[];
+    // orders: IProduct[];
 }
 
 export interface IUserState {
     user: IUser;
 }
 
-export type Credentials = {
+export interface ICredentials {
     username: string;
     password: string;
+}
+
+export interface IRegister {
+    username: string;
+    password: string;
+    email: string;   
 }

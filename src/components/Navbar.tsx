@@ -1,16 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/logo.svg'
 import { useLocation } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 const Navbar: React.FC = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [search, setSearch] = useState<string>(new URLSearchParams(location.search).get("s") ?? "");
+    const { removeUser } = useContext(UserContext);
     
     const handleSearch = () => {
         search.trim() !== "" && navigate(`/?s=${search}`);
+    }
+
+    const handleLogout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+        e.preventDefault();
+        removeUser();
+        navigate("/login");
     }
 
     return (
@@ -37,13 +45,13 @@ const Navbar: React.FC = () => {
                 <Link to={'/selling'}>
                     <span>My Products</span>
                 </Link>
-                <Link to={'/liked'}>
+                {/* <Link to={'/liked'}>
                     <span>Liked Products</span>
                 </Link>
                 <Link to={'/orders'}>
                     <span>My Orders</span>
-                </Link>
-                <Link to={'/login'}>
+                </Link> */}
+                <Link to={'/login'} onClick={e => handleLogout(e)}>
                     <span>Logout</span>
                 </Link>
             </div>
