@@ -19,12 +19,19 @@ const ProductHandler: React.FC = () => {
         description: "",
         userId: ""
     }
-    const { userState } = useContext(UserContext);
 
-    const getProduct = async (): Promise<IProduct> => {
-        const { data } = await axiosInstance.get(`/product/${productId}`);
-        return data;
-    }
+    const categories = [
+        {
+            value: "Electronics"
+        },
+        {
+            value: "Clothing"
+        },
+        {
+            value: "Books"
+        }
+    ];
+    const { userState, createProduct, updateProduct, removeProduct } = useContext(UserContext);
 
     const productId = new URLSearchParams(location.search).get("p");
     
@@ -48,7 +55,7 @@ const ProductHandler: React.FC = () => {
         document.getElementById("imageUrl")?.click();
     }
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, files?: FileList | null) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>, files?: FileList | null) => {
         if (event.target.id === "imageUrl" && files) {
             const file = files.item(0);
             setImage(file);
@@ -63,33 +70,16 @@ const ProductHandler: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!productId) {
-            const { data } = await axiosInstance.post(`/product/user/${userState.user.id}`, {
-                ...product
-            })
-            if (image) {
-                const form = new FormData();
-                form.append("image", image, image.name);
-                await axiosInstance.post(`/images/${data}`, form, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-            }
+            await createProduct(userState.user.id, product, image);
         } else {
-            const { name, price, description, stock, seller, userId } = product;
-            await axiosInstance.put(`/product/${productId}`, {
-                name, price, description, stock, seller, userId
-            })
-            if (image) {
-                const form = new FormData();
-                form.append("image", image, image.name);
-                await axiosInstance.post(`/images/${productId}`, form, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-            }
+            console.log("actualizando xd")
+            await updateProduct(userState.user.id, product, image);
         }
+        navigate("/selling");
+    }
+
+    const handleDelete = async () => {
+        await removeProduct(userState.user.id, product);
         navigate("/selling");
     }
 
@@ -97,6 +87,7 @@ const ProductHandler: React.FC = () => {
         <form className="default" onSubmit={e => handleSubmit(e)}>
             <div className="default__head">
                 <h2 className="title">{title}</h2>
+                {productId && <button type="button" className="btn btn--red" onClick={handleDelete}>DELETE <FontAwesomeIcon icon={['fas', 'trash']}/></button>}
             </div>
             <div className="default__body">
                 <div className="field">
@@ -121,7 +112,9 @@ const ProductHandler: React.FC = () => {
                 </div>
                 <div className="field">
                     <p>Category: </p>
-                    <input type="text" id="category" value={product.category} onChange={e => handleChange(e)} required/>
+                    <select id="category" value={product.category} onChange={e => handleChange(e)} required>
+                        {categories.map(el => <option value={el.value}>{el.value}</option>)}
+                    </select>
                 </div>
                 <div className="field description">
                     <p>Description: </p>

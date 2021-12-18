@@ -39,22 +39,24 @@ const Product: React.FC = () => {
                 </div>
                 <div className="product-grid__content">
                     <p className="title">{currentProduct?.name}</p>
+                    <p>Category: {currentProduct?.category}</p>
                     <p>{currentProduct?.name}</p>
                     <p>Sold by: {currentProduct?.seller}</p>
                     <span>{currentProduct?.price} €</span>
                     <p>{currentProduct?.stock} in stock</p>
+                    
                     {/* <p><FontAwesomeIcon icon={['fas', 'heart']}/> {currentProduct?.likes}</p> */}
                     <div className="product-grid__buttons">
                         {/* TODO color boton cuando tiene y no tiene like */}
                         {/* <button className="btn btn--red">Like <FontAwesomeIcon icon={['fas', 'heart']}/></button> */}
-                        <button className="btn btn--primary" onClick={handleCart}>Add <FontAwesomeIcon icon={['fas', 'shopping-cart']}/></button>
+                        {currentProduct?.userId !== userState.user.id && <button className="btn btn--primary" onClick={handleCart}>Add <FontAwesomeIcon icon={['fas', 'shopping-cart']}/></button>}
                     </div>
                 </div>
             </div>
             <h2 className="title">Other products you may like: </h2>
             <div className="default">
                 <div className="default__body">
-                    {products.filter((el, i) => el.id !== currentProductId && el.category === currentProduct?.category).map((el ,i) => <ProductCard product={el} index={i} key={i}/>)}
+                    {products.filter((el, i) => el.id !== currentProductId && el.category === currentProduct?.category  && el.stock > 0  && el.userId !== userState.user.id).map((el ,i) => <ProductCard product={el} index={i} key={i}/>)}
                 </div>
             </div>
         </>

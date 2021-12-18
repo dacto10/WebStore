@@ -1,35 +1,33 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard";
 import { UserContext } from "../../context/UserContext";
 import { IProduct } from "../../utils/types";
 
 const Cart: React.FC =  () => {
-    const { userState, removeFromCart } = useContext(UserContext);
+    const { userState, removeFromCart, removeAllFromCart } = useContext(UserContext);
 
     const [currentProducts, setCurrentProducts] = useState<IProduct[]>(userState.user.cart);
     const [label, setLabel] = useState<string>("You have no products in your Cart!");
 
     const handleProductRemove = async (index: number) => {
-        setCurrentProducts((state: IProduct[]) => state.filter((el, i) => i !== index));
         try {
-            await removeFromCart(userState.user.id, currentProducts[index].id)
+            await removeFromCart(userState.user.id, currentProducts[index].id);
         } catch (err) {
             console.log(err);
         }
     }
 
-    const handlePurchase = () => {
-    //     setLabel(_ => "Items purchased sucessfully!");
-    //     setCurrentProducts(_ => []);
-    //     try {
-    //         updateUser({
-    //             ...userState.user,
-    //             cart: currentProducts
-    //         })
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
+    const handlePurchase = async () => {
+        try {
+            await removeAllFromCart(userState.user.id);
+        } catch (err) {
+            console.log(err)
+        }
     }
+
+    useEffect(() => {
+        setCurrentProducts((state: IProduct[]) => userState.user.cart);
+    }, [userState.user.cart])
 
     const date = new Date();
     date.setDate(new Date().getDate() + 7);

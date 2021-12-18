@@ -33,6 +33,11 @@
                 color: $light-primary;
             }
         }
+        @include breakpoint(500px) {
+            span {
+                display: none;
+            }
+        }
     }
 
     &__search {

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { axiosInstance } from "../..";
 import ProductCard from "../../components/ProductCard";
 import Select from "../../components/Select";
+import { UserContext } from "../../context/UserContext";
 import { IProduct } from "../../utils/types";
 
 const Home: React.FC = () => {
@@ -15,25 +16,31 @@ const Home: React.FC = () => {
         },
         {
             value: "Clothing"
+        },
+        {
+            value: "Books"
         }
     ];
 
+    const { userState } = useContext(UserContext);
+
     const location = useLocation();
     const [products, setProducts] = useState<IProduct[]>([]);
-    const [currentCategory, _] = useState<string>(new URLSearchParams(location.search).get("c") ?? "All");
-    const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products.filter(el => el.category === currentCategory || currentCategory === "All"));
+    const [currentCategory, setCurrentCategory] = useState<string>(new URLSearchParams(location.search).get("c") ?? "All");
+    const [currentProducts, setCurrentProducts] = useState<IProduct[]>(products.filter((el: IProduct) => (el.category === currentCategory || currentCategory === "All") && (el.userId !== userState.user.id) && el.stock > 0));
 
     useEffect(() => {
         async function getProducts() {
             const {data} = await axiosInstance.get("/product/");
             setProducts(data);
-            setCurrentProducts(data.filter((el: IProduct) => el.category === currentCategory || currentCategory === "All"));
+            setCurrentProducts((state: IProduct[]) => data.filter((el: IProduct) => (el.category === currentCategory || currentCategory === "All") && (el.userId !== userState.user.id) && el.stock > 0));
         }
         getProducts();
     }, [])
 
     const handleSelectCategory = (category: string) => {
-        setCurrentProducts((state: IProduct[]) => products.filter(el => el.category === category || category === "All"));
+        setCurrentCategory(category);
+        setCurrentProducts((state: IProduct[]) => products.filter((el: IProduct) => (el.category === category || category === "All") && (el.userId !== userState.user.id) && el.stock > 0));
     }
 
     return (
