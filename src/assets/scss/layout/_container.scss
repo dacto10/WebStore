@@ -1,0 +1,8 @@
+.container {
+    margin: 61px 0;
+    height: calc(100% - 182px);
+    padding: 30px 6%;
+    .title {
+        color: $theme-primary;
+    }
+}

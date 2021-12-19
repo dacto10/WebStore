@@ -1,0 +1,67 @@
+.product-card {
+    z-index: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 200px;
+    padding: 20px;
+    gap: 10px;
+    border: solid 1px $alt-primary;
+    border-radius: 5px;
+    box-shadow: 5px 10px 8px $light-primary;
+
+    > a {
+        @include flex(center, center, false, 0px)
+    }
+
+    img {
+        object-fit: cover;
+        width: 200px;
+        height: 200px;
+        cursor: pointer;
+        align-self: center;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    &__description {
+        padding: 15px;
+        @include flex(flex-start, flex-start, true, 15px);
+        position: relative;
+        color: $dark-primary;
+        button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+        p {
+            &:last-child {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                font-size: $fz-lg;
+                color: $theme-primary;
+                font-weight: bold;
+            }
+        }
+        svg {
+            color: $red;
+        }
+        span {
+            &:hover {
+                color: $light-primary !important;
+            }
+            cursor: pointer;
+            font-size: $fz-lg;
+            color: $theme-primary;
+            font-weight: bold;
+        }
+        a {
+            width: 85%;
+        }
+    }
+    @include breakpoint(1000px) {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}

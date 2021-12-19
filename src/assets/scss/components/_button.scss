@@ -1,0 +1,37 @@
+.btn {
+    width: 130px;
+    height: 40px;
+    @include flex(space-between, center, false, 0px);
+    font-size: $fz-md;
+    border: solid 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    &__sm {
+        width: 40px;
+        @include flex(center, center, false, 0px)
+    }
+    &__lg {
+        width: 170px;
+    }
+    &--red {
+        color: $red;
+        border-color: $red;
+        background-color: $light-red;
+    }
+    &--primary {
+        color: $theme-primary !important;
+        border-color: $theme-primary;
+        background-color: $alt-primary;
+        svg {
+            color: $theme-primary !important;
+        }
+    }
+    &--center {
+        justify-content: center;
+    }
+    &:hover {
+        opacity: 0.7;
+    }
+}

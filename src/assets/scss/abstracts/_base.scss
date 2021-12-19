@@ -2,9 +2,11 @@ html, body {
     font-family: Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    height: 100%;
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
     color: $dark-primary;
+    width: 100%;
 }
 
 p {
@@ -18,4 +20,8 @@ a {
 
 input, textarea, select {
     outline: none;
+}
+
+#root {
+    height: 100%;
 }

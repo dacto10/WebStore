@@ -1,39 +1,44 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/logo.svg'
+import { useLocation } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
-export default () => {
-    const [activeDropdown, setActiveDropdown] = useState<Boolean>(false);
-    
+const Navbar: React.FC = () => {
+    const navigate = useNavigate();
+    const { removeUser, userState } = useContext(UserContext);
+
+    const handleLogout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
+        e.preventDefault();
+        removeUser();
+        navigate("/login");
+    }
+
     return (
         <div className="navbar">
             <Link to={'/'} className="navbar__logo">
-                    <img src={ logo } alt="" />
-                    <span>WebStore</span>
+                <img src={ logo } alt="" />
+                <span>WebStore</span>
             </Link>
-            <div className="navbar__search search">
-                <input type="text" placeholder="Search for a product..." />
-                <button type="button">
-                    <FontAwesomeIcon icon={['fas', 'search']}/>
-                </button>
-            </div>
             <Link to={'/cart'} className="navbar__cart">
                 <FontAwesomeIcon icon={['fas', 'shopping-cart']}/>
-                <span>My Cart</span>
+                <span>Cart</span>
             </Link>
-            <div className="navbar__user" onClick={() => setActiveDropdown(!activeDropdown)}>
+            <div className="navbar__user">
                 <FontAwesomeIcon icon={['fas', 'user']}/>
-                <span>username</span>
+                <span>{userState.user.username}</span>
             </div>
-            <div className="navbar__dropdown" style={{display: activeDropdown === true ? 'flex' : 'none'}}>
-                    <Link to={'/cart'}>
-                        <span>My Products</span>
-                    </Link>
-                    <Link to={'/login'}>
-                        <span>Logout</span>
-                    </Link>
-                </div>
+            <div className="navbar__dropdown">
+                <Link to={'/selling'}>
+                    <span>My Products</span>
+                </Link>
+                <Link to={'/login'} onClick={e => handleLogout(e)}>
+                    <span>Logout</span>
+                </Link>
+            </div>
         </div>
-    )
-}
+    );
+};
+
+export default Navbar;

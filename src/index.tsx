@@ -6,12 +6,20 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './assets/scss/styles.scss';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import { UserProvider } from './context/UserProvider'
+import axios from 'axios';
+
+export const axiosInstance = axios.create({
+  baseURL: "https://webstoreback.azurewebsites.net/api/"
+})
 
 library.add(fas);
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <UserProvider>
+        <App />
+      </UserProvider>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')
