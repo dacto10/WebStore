@@ -9,9 +9,7 @@ const INITIAL_STATE: IUserState = {
         id: "",
         username: "",
         products: [],
-        // liked: [],
         cart: [],
-        // orders: []
     }
 }
 
@@ -26,14 +24,6 @@ export const UserProvider = ({children}: Props) => {
         const user = await login(credentials);
         localStorage.setItem("userId", JSON.stringify(user.id));
         dispatch({ type: 'setUser', payload: user as IUser});
-    }
-
-    const resumeUser = async () => {
-        const userId = localStorage.getItem("userId");
-        if (userId) {
-            const user = await getUser(JSON.parse(userId));
-            dispatch({ type: 'updateUser', payload: user as IUser });
-        }
     }
 
     const addToCart = async (userId: string, productId: string) => {
@@ -82,7 +72,6 @@ export const UserProvider = ({children}: Props) => {
             createProduct,
             updateProduct,
             removeProduct,
-            resumeUser
         }}>
             { children }
         </UserContext.Provider>

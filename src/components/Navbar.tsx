@@ -7,13 +7,7 @@ import { UserContext } from '../context/UserContext';
 
 const Navbar: React.FC = () => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const [search, setSearch] = useState<string>(new URLSearchParams(location.search).get("s") ?? "");
     const { removeUser, userState } = useContext(UserContext);
-    
-    // const handleSearch = () => {
-    //     search.trim() !== "" && navigate(`/?s=${search}`);
-    // }
 
     const handleLogout = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>): void => {
         e.preventDefault();
@@ -27,12 +21,6 @@ const Navbar: React.FC = () => {
                 <img src={ logo } alt="" />
                 <span>WebStore</span>
             </Link>
-            {/* <div className="navbar__search search">
-                <input type="text" placeholder="Search for a product..." value={search} onChange={e => setSearch(e.target.value)}/>
-                <button type="button" onClick={handleSearch}>
-                    <FontAwesomeIcon icon={['fas', 'search']}/>
-                </button>
-            </div> */}
             <Link to={'/cart'} className="navbar__cart">
                 <FontAwesomeIcon icon={['fas', 'shopping-cart']}/>
                 <span>Cart</span>
@@ -45,12 +33,6 @@ const Navbar: React.FC = () => {
                 <Link to={'/selling'}>
                     <span>My Products</span>
                 </Link>
-                {/* <Link to={'/liked'}>
-                    <span>Liked Products</span>
-                </Link>
-                <Link to={'/orders'}>
-                    <span>My Orders</span>
-                </Link> */}
                 <Link to={'/login'} onClick={e => handleLogout(e)}>
                     <span>Logout</span>
                 </Link>

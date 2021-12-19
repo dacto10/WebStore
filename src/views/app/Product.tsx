@@ -40,15 +40,13 @@ const Product: React.FC = () => {
                 <div className="product-grid__content">
                     <p className="title">{currentProduct?.name}</p>
                     <p>Category: {currentProduct?.category}</p>
+                    <p>{currentProduct?.description}</p>
                     <p>{currentProduct?.name}</p>
                     <p>Sold by: {currentProduct?.seller}</p>
                     <span>{currentProduct?.price} €</span>
                     <p>{currentProduct?.stock} in stock</p>
                     
-                    {/* <p><FontAwesomeIcon icon={['fas', 'heart']}/> {currentProduct?.likes}</p> */}
                     <div className="product-grid__buttons">
-                        {/* TODO color boton cuando tiene y no tiene like */}
-                        {/* <button className="btn btn--red">Like <FontAwesomeIcon icon={['fas', 'heart']}/></button> */}
                         {currentProduct?.userId !== userState.user.id && <button className="btn btn--primary" onClick={handleCart}>Add <FontAwesomeIcon icon={['fas', 'shopping-cart']}/></button>}
                     </div>
                 </div>

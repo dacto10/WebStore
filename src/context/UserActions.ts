@@ -21,6 +21,8 @@ export const updateUserCart = async (userId: string, action: 'insertCart' | 'rem
         const { data } = await axiosInstance.delete(`/user/${userId}/cart/product/${productId}`);
         return getAllUserData(data);
     } else {
+        const user = await getUser(userId);
+        Promise.all(user.cart.map(el => axiosInstance.put(`/product/${el.id}`, { ...el, stock: el.stock - 1 })));
         const { data } = await axiosInstance.delete(`/user/${userId}/cart/product/`);
         return await getAllUserData(data);
     }
@@ -42,9 +44,8 @@ export const updateUserProducts = async (userId: string, action: 'insertProduct'
             })
         }
     } else if (action === 'updateProduct') {
-        const { name, price, description, stock, category } = product;
         await axiosInstance.put(`/product/${product.id}`, {
-            name, price, description, stock, category
+            ...product
         })
         if (image) {
             const form = new FormData();

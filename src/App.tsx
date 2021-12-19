@@ -16,16 +16,6 @@ export default () => {
       }
   })
 
-  // useEffect(() => {
-  //   async function checkAuth() {
-  //     await resumeUser()
-  //     if (!pathname.includes('login') && !pathname.includes('register') && userId) {
-  //       navigate("login");
-  //     }
-  //   }
-  //   checkAuth();
-  // }, [])
-
   return (
     <>
       {!pathname.includes('login') && !pathname.includes('register') && <Navbar />}

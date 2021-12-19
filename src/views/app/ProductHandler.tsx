@@ -10,14 +10,14 @@ const ProductHandler: React.FC = () => {
     const navigate = useNavigate();
     const emptyProduct: IProduct = {
         id: "",
-        category: "",
+        category: "Electronics",
         name: "",
         seller: "",
         price: 0,
         stock: 0,
-        // likes: 0,
         description: "",
-        userId: ""
+        userId: "",
+        image: ""
     }
 
     const categories = [
@@ -72,7 +72,7 @@ const ProductHandler: React.FC = () => {
         if (!productId) {
             await createProduct(userState.user.id, product, image);
         } else {
-            console.log("actualizando xd")
+            console.log(product)
             await updateProduct(userState.user.id, product, image);
         }
         navigate("/selling");
@@ -106,7 +106,7 @@ const ProductHandler: React.FC = () => {
                     <p>Image: </p>
                     <div className="field__file">
                         <span>{image && image.name}</span>
-                        <input id="imageUrl" type="file" value={product.image} onChange={e => handleChange(e, e.currentTarget.files)}/>
+                        <input id="imageUrl" type="file" onChange={e => handleChange(e, e.currentTarget.files)}/>
                         <button type ="button" className="btn btn--primary" onClick={uploadImage}>Upload <FontAwesomeIcon icon={['fas', 'upload']}/></button>
                     </div>
                 </div>

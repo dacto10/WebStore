@@ -5,7 +5,6 @@ export interface IProduct {
     seller: string;
     price: number;
     stock: number;
-    // likes: number;
     image?: string;
     description?: string;
     userId: string;
@@ -16,8 +15,6 @@ export interface IUser {
     username: string;
     products: IProduct[];
     cart: IProduct[];
-    // liked: IProduct[];
-    // orders: IProduct[];
 }
 
 export interface IUserState {

@@ -4,7 +4,6 @@ import { ICredentials, IProduct, IUser, IUserState } from "../utils/types";
 export type UserContextProps =  {
     userState: IUserState,
     setUser: (credentials: ICredentials) => Promise<void>,
-    resumeUser: () => Promise<void>,
     addToCart: (userId: string, productId: string) => Promise<void>,
     removeFromCart: (userId: string, productId: string) => Promise<void>,
     removeUser: () => void,

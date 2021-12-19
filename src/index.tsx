@@ -10,7 +10,7 @@ import { UserProvider } from './context/UserProvider'
 import axios from 'axios';
 
 export const axiosInstance = axios.create({
-  baseURL: "https://localhost:44385/api/"
+  baseURL: "https://webstoreback.azurewebsites.net/api/"
 })
 
 library.add(fas);

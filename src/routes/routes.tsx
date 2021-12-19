@@ -2,8 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Cart from '../views/app/Cart';
 import Home from '../views/app/Home';
-import Liked from '../views/app/Liked';
-import Orders from '../views/app/Orders';
 import Product from '../views/app/Product';
 import ProductHandler from '../views/app/ProductHandler';
 import SellingProducts from '../views/app/SellingProducts';
@@ -16,10 +14,8 @@ const RouterLink: React.FC = () => (
       <Route path="/" element={<Home />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/register" element={<Register />}/>
-      {/* <Route path="/liked" element={<Liked />}/> */}
       <Route path="/selling" element={<SellingProducts />}/>
       <Route path="/cart" element={<Cart />}/>
-      {/* <Route path="/orders" element={<Orders />}/> */}
       <Route path="/product" element={<Product />}/>
       <Route path="/handler" element={<ProductHandler />}/>
     </Routes>
