@@ -50,12 +50,17 @@ const Product: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <h2 className="title">Other products you may like: </h2>
-            <div className="default">
-                <div className="default__body">
-                    {products.filter((el, i) => el.id !== currentProductId && el.category === currentProduct?.category  && el.stock > 0  && el.userId !== userState.user.id).map((el ,i) => <ProductCard product={el} index={i} key={i}/>)}
-                </div>
-            </div>
+            {
+                currentProduct?.userId !== userState.user.id &&
+                <>
+                    <h2 className="title">Other products you may like: </h2>
+                    <div className="default">
+                        <div className="default__body">
+                            {products.filter((el, i) => el.id !== currentProductId && el.category === currentProduct?.category  && el.stock > 0  && el.userId !== userState.user.id).map((el ,i) => <ProductCard product={el} index={i} key={i}/>)}
+                        </div>
+                    </div>    
+                </>
+            }
         </>
     );
 };
