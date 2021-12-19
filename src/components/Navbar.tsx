@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/icons/logo.svg'
-import { useLocation } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 const Navbar: React.FC = () => {
