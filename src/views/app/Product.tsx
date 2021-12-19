@@ -41,7 +41,6 @@ const Product: React.FC = () => {
                     <p className="title">{currentProduct?.name}</p>
                     <p>Category: {currentProduct?.category}</p>
                     <p>{currentProduct?.description}</p>
-                    <p>{currentProduct?.name}</p>
                     <p>Sold by: {currentProduct?.seller}</p>
                     <span>{currentProduct?.price} €</span>
                     <p>{currentProduct?.stock} in stock</p>
