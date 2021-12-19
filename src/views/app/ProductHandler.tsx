@@ -106,7 +106,7 @@ const ProductHandler: React.FC = () => {
                     <p>Image: </p>
                     <div className="field__file">
                         <span>{image && image.name}</span>
-                        <input id="imageUrl" type="file" value={product.imageUrl} onChange={e => handleChange(e, e.currentTarget.files)}/>
+                        <input id="imageUrl" type="file" value={product.image} onChange={e => handleChange(e, e.currentTarget.files)}/>
                         <button type ="button" className="btn btn--primary" onClick={uploadImage}>Upload <FontAwesomeIcon icon={['fas', 'upload']}/></button>
                     </div>
                 </div>

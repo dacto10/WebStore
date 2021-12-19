@@ -12,14 +12,14 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = (props: Props) => {
-    const {id, name, seller, stock, price, imageUrl, category} = props.product;
+    const {id, name, seller, stock, price, image, category} = props.product;
     const handleClick = () => {
         if (props.buttonHandler) props.buttonHandler(props.index);
     }
     return (
         <div className="product-card" >
             <Link to={`/product?p=${id}`}>
-                <img src={imageUrl} alt="" />
+                <img src={image} alt="" />
             </Link>
             <div className="product-card__description">
                 <Link to={`/product?p=${id}`}>

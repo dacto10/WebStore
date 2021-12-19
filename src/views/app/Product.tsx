@@ -35,7 +35,7 @@ const Product: React.FC = () => {
         <>
             <div className="product-grid">
                 <div className="product-grid__img">
-                    <img src={currentProduct?.imageUrl} alt="" />
+                    <img src={currentProduct?.image} alt="" />
                 </div>
                 <div className="product-grid__content">
                     <p className="title">{currentProduct?.name}</p>

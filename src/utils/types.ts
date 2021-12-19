@@ -6,7 +6,7 @@ export interface IProduct {
     price: number;
     stock: number;
     // likes: number;
-    imageUrl?: string;
+    image?: string;
     description?: string;
     userId: string;
 }
