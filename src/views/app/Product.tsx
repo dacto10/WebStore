@@ -56,7 +56,7 @@ const Product: React.FC = () => {
                     <h2 className="title">Other products you may like: </h2>
                     <div className="default">
                         <div className="default__body">
-                            {products.filter((el, i) => el.id !== currentProductId && el.category === currentProduct?.category  && el.stock > 0  && el.userId !== userState.user.id && i < 2).map((el ,i) => <ProductCard product={el} index={i} key={i}/>)}
+                            {products.filter(el => el.id !== currentProductId && el.category === currentProduct?.category  && el.stock > 0  && el.userId !== userState.user.id).map((el ,i) => <ProductCard product={el} index={i} key={i}/>).filter((el, i) => i < 2)}
                         </div>
                     </div>    
                 </>
